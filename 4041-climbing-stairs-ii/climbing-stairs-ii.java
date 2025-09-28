@@ -5,13 +5,12 @@ class Solution {
 
         for (int j = 1; j <= n; j++) {
             dp[j] = Integer.MAX_VALUE;
-            for (int step = 1; step <= 3; step++) {
-                int i = j - step;
-                if (i >= 0) {
-                    dp[j] = Math.min(dp[j], dp[i] + costs[j - 1] + step * step);
-                }
-            }
+
+            if (j - 1 >= 0) dp[j] = Math.min(dp[j], dp[j - 1] + costs[j - 1] + 1);
+            if (j - 2 >= 0) dp[j] = Math.min(dp[j], dp[j - 2] + costs[j - 1] + 4);
+            if (j - 3 >= 0) dp[j] = Math.min(dp[j], dp[j - 3] + costs[j - 1] + 9);
         }
-        return dp[n]; 
+
+        return dp[n];
     }
 }
